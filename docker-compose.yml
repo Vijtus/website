@@ -1,0 +1,9 @@
+services:
+  web:
+    image: jitesoft/lighttpd
+    container_name: my-lighttpd
+    ports:
+      - "8080:80"
+    volumes:
+      # Match the container's default doc root
+      - "./website:/var/www/html:ro"

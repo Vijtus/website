@@ -1,0 +1,332 @@
+:root {
+    --bg: #042927;
+    /* Background */
+    --bg1: #042927;
+    /* Outline */
+    --fg: #91B5C0;
+    /* Text color */
+    --fg3: #91B5C0;
+    /* Accent text */
+    --cyan: #91B5C0;
+    /*green */
+    --blue: #ED333B;
+    /*red*/
+}
+
+* {
+    color: var(--fg);
+    line-height: 1.4;
+    text-shadow: 0 0 0 var(--fg);
+
+    /* Hide scrollbars */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {}
+
+::selection {
+    background: var(--cyan);
+    color: #000;
+}
+
+@media screen and (min-width: 992px) {
+    html {
+        height: 100%;
+    }
+}
+
+body {
+    padding: 16px;
+    background: var(--bg);
+    font: normal 300 13px monospace;
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        padding: 48px;
+        height: 100%;
+    }
+}
+
+header {
+    padding-bottom: 24px;
+}
+
+#content {
+    display: flex;
+    gap: 48px;
+    justify-items: flex-start;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 992px) {
+    #content {
+        gap: 48px;
+        flex-direction: row;
+        height: calc(100% - 48px);
+    }
+}
+
+.box-green {
+    box-shadow: 0 0 0 1px var(--fg3),
+        0 0 0 3px var(--bg1),
+        0 0 0 4px var(--fg3),
+        4px 4px 0 3px var(--cyan);
+    padding: 16px;
+    background: var(--bg1);
+    position: relative;
+}
+
+.box-green:before {
+    content: " ";
+    display: block;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background: var(--bg);
+    box-shadow: 1px 1px 0 0px var(--fg3),
+        3px 3px 0 0px var(--bg1),
+        4px 4px 0 0px var(--fg3);
+}
+
+.to-pdf {
+    display: block;
+    text-align: right;
+    margin-bottom: 8px
+}
+
+nav {
+    display: inline-block;
+    height: fit-content;
+    width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+    nav {
+        width: initial;
+        position: sticky !important;
+        top: 48px;
+    }
+}
+
+
+nav ul {
+    margin-bottom: 16px;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    padding-left: 0
+}
+
+nav ul:last-child {
+    margin-bottom: 0;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    gap: 48px;
+    flex-direction: column-reverse;
+}
+
+@media screen and (min-width: 992px) {
+
+    main {
+        flex-direction: row;
+        height: 100%
+    }
+
+    main section {
+        width: 420px;
+    }
+
+    main section>div {
+        overflow-x: scroll;
+        height: 100%;
+    }
+}
+
+main section img {
+    display: block;
+    margin: 0 auto;
+}
+
+p,
+pre {
+    margin-bottom: 16px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+pre {
+    padding: 4px 8px;
+    background: var(--bg);
+    overflow-x: auto;
+}
+
+pre code {
+    display: block;
+    padding: 0 !important;
+}
+
+code {
+    padding: 2px 4px;
+    background: var(--bg);
+}
+
+/* article p:first-child::first-letter { */
+/*     font-size: 330%; */
+/*     float: left; */
+/*     padding-right: 4px; */
+/*     padding-top: 4px; */
+/* } */
+
+h1 {
+    color: #AFB55A;
+
+}
+
+h2 {
+    color: #7DBF86;
+}
+
+ul,
+dl,
+h1,
+h2,
+.gallery>a {
+    margin-bottom: 8px;
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 12px;
+    /* 12px is the minimun value for circle to be visible */
+}
+
+ul li {
+    padding-left: 4px;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+dl:not(.snippets) dt {
+    width: 33.33%;
+}
+
+dd {
+    width: 66.66%;
+}
+
+dl.snippets dt {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+dl.snippets dt code {
+    display: block;
+    padding: 4px 8px;
+    overflow-x: auto;
+}
+
+figcaption {
+    text-align: center;
+}
+
+/* TODO: place to separate file and then import */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: auto;
+}
+
+.gallery a {
+    width: 50%;
+}
+
+.gallery a figure {
+    text-align: center;
+}
+
+.crt::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+  
+  @keyframes flicker {
+    0% {
+    opacity: 0.27861;
+    }
+    5% {
+    opacity: 0.34769;
+    }
+    10% {
+    opacity: 0.23604;
+    }
+    15% {
+    opacity: 0.10626;
+    }
+    20% {
+    opacity: 0.18128;
+    }
+    25% {
+    opacity: 0.10626;
+    }
+    30% {
+    opacity: 0.18128;
+    }
+    35% {
+    opacity: 0.23604;
+    }
+  }
+  
+  .crt::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+  
