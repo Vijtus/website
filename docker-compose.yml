@@ -1,6 +1,7 @@
 services:
   web:
     image: jitesoft/lighttpd
+    restart: unless-stopped
     container_name: my-lighttpd
     ports:
       - "8080:80"
