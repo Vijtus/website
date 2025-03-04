@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class=" ptlwfpy idc0_350 xdhnj idc0_343">
+<head lang="en">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Friends | vijtus.com</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+<div class="crt"></div>
+<!-- Rainbow text style -->
+<style>
+.rainbow-text {
+font-size: 2rem;
+font-weight: bold;
+color: #042927; /* Changed to dark teal */
+}
+.letter {
+display: inline-block;
+animation: rainbow-animation 3s linear infinite,
+ bounce-animation 1s ease-in-out infinite alternate;
+}
+@keyframes rainbow-animation {
+ 0% { color: #ff0000; }
+ 16.6% { color: #ffff00; }
+ 33.3% { color: #00ff00; }
+ 50% { color: #00ffff; }
+ 66.6% { color: #0000ff; }
+ 83.3% { color: #ff00ff; }
+ 100% { color: #ff0000; }
+}
+@keyframes bounce-animation {
+ 0% { transform: translateY(0); }
+ 100% { transform: translateY(-8px); }
+}
+/* Staggered effect delays */
+.letter:nth-child(1) { animation-delay: 0.0s; }
+.letter:nth-child(2) { animation-delay: 0.1s; }
+.letter:nth-child(3) { animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.3s; }
+.letter:nth-child(5) { animation-delay: 0.4s; }
+.letter:nth-child(6) { animation-delay: 0.5s; }
+.letter:nth-child(7) { animation-delay: 0.6s; }
+.letter:nth-child(8) { animation-delay: 0.7s; }
+.letter:nth-child(9) { animation-delay: 0.8s; }
+.letter:nth-child(10) { animation-delay: 0.9s; }
+</style>
+</head>
+<body>
+<header>
+<!-- Changed inline style to dark teal -->
+<div class="rainbow-text" id="rainbowText" style="color: #042927;">Vijtus.com</div>
+</header>
+<div id="content">
+<nav class="box-green">
+<ul>
+<li><a href="/index.html">About</a></li>
+</ul>
+<ul>
+<li><a href="/projects.html">Projects</a></li>
+</ul>
+<ul>
+<li><a href="/experience.html">Experience</a></li>
+</ul>
+<ul>
+<li><a href="/guestbook.html">Guestbook</a></li>
+</ul>
+<ul>
+<li><a href="/friends.html">> Friends</a></li>
+</ul>
+</nav>
+<main>
+<section class="box-green">
+<div>
+<h1>To All The Friends I Treasure</h1>
+<div>
+<p>While you're here, consider visiting the websites of my colleagues and friends. They excel in embedded systems, game development, data analysis and many more! They're not just skilled professionals, they're people I trust and respect deeply...</p>
+<p>Each one brings unique expertise to their field. Take a look - they might be exactly the professionals you're searching for.</p>
+</div>
+</section>
+<section class="box-green">
+<div class="gallery">
+<a href="https://dmytroengineering.com/">
+<figure>
+<img src="DDL_network_88x31.gif" alt="">
+<figcaption>Dmytro Engineering</figcaption>
+</figure>
+</a>
+<a href="https://x.com/aspsyxia">
+    <figure>
+    <img src="Aspsyxia_88x31.jpeg" alt="">
+    <figcaption>Aspsyxia</figcaption>
+    </figure>
+    </a>
+</section>
+</main>
+</div>
+<script src="./oneko.js"></script>
+<!-- Rainbow text script -->
+<script>
+// Split the text into individual letters and wrap each in a span
+function createRainbowText() {
+const textElement = document.getElementById('rainbowText');
+const text = textElement.textContent;
+// Clear the current content
+textElement.innerHTML = '';
+// Add each letter wrapped in a span with the 'letter' class
+for (let i = 0; i < text.length; i++) {
+const letterSpan = document.createElement('span');
+letterSpan.className = 'letter';
+letterSpan.textContent = text[i];
+textElement.appendChild(letterSpan);
+ }
+ }
+// Call the function when the page loads
+window.onload = createRainbowText;
+</script>
+</body>
+</html>
