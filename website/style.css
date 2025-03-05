@@ -1,4 +1,8 @@
-:root {
+/* Ensure mobile content is scrollable */
+main section>div {
+    overflow: auto;
+    max-width: 100%;
+}:root {
     --bg: #042927;
     /* Background */
     --bg1: #042927;
@@ -37,6 +41,22 @@
     color: #000;
 }
 
+/* Fix 1: Adjust container heights and prevent overflow */
+/* Base styles for all devices */
+html, body {
+    min-height: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; /* Prevent horizontal scrolling on all devices */
+    overflow-y: auto; /* Allow vertical scrolling by default for mobile */
+}
+
+/* Desktop-specific: prevent scrolling */
+@media screen and (min-width: 992px) {
+    html, body {
+        overflow-y: hidden; /* Prevent vertical scrolling on desktop */
+    }
+}
+
 @media screen and (min-width: 992px) {
     html {
         height: 100%;
@@ -52,7 +72,8 @@ body {
 @media screen and (min-width: 992px) {
     body {
         padding: 48px;
-        height: 100%;
+        min-height: 100%;
+        height: auto;
     }
 }
 
@@ -60,21 +81,25 @@ header {
     padding-bottom: 24px;
 }
 
+/* Fix 2: Make content container responsive without overflowing */
 #content {
     display: flex;
     gap: 48px;
     justify-items: flex-start;
     flex-direction: column;
+    max-width: 100%;
 }
 
 @media screen and (min-width: 992px) {
     #content {
         gap: 48px;
         flex-direction: row;
-        height: calc(100% - 48px);
+        height: auto;
+        min-height: auto;
     }
 }
 
+/* Fix 3: Make box-green more responsive */
 .box-green {
     box-shadow: 0 0 0 1px var(--fg3),
         0 0 0 3px var(--bg1),
@@ -83,6 +108,8 @@ header {
     padding: 16px;
     background: var(--bg1);
     position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .box-green:before {
@@ -119,7 +146,6 @@ nav {
     }
 }
 
-
 nav ul {
     margin-bottom: 16px;
     padding: 0;
@@ -142,26 +168,30 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Fix 4: Change the layout order for mobile view */
 main {
     display: flex;
     gap: 48px;
-    flex-direction: column-reverse;
+    flex-direction: column; /* Changed from column-reverse to column */
+    max-width: 100%;
 }
 
 @media screen and (min-width: 992px) {
-
     main {
         flex-direction: row;
-        height: 100%
+        height: auto;
     }
 
     main section {
         width: 420px;
+        max-width: 50vw;
+        height: auto;
     }
 
     main section>div {
-        overflow-x: scroll;
-        height: 100%;
+        overflow-y: auto; /* Enable vertical scrolling */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        max-height: 450px; /* Fixed height that works across screens */
     }
 }
 
@@ -204,7 +234,6 @@ code {
 
 h1 {
     color: #AFB55A;
-
 }
 
 h2 {
@@ -286,9 +315,9 @@ figcaption {
     z-index: 2;
     background-size: 100% 2px, 3px 100%;
     pointer-events: none;
-  }
+}
   
-  @keyframes flicker {
+@keyframes flicker {
     0% {
     opacity: 0.27861;
     }
@@ -313,9 +342,9 @@ figcaption {
     35% {
     opacity: 0.23604;
     }
-  }
+}
   
-  .crt::after {
+.crt::after {
     content: " ";
     display: block;
     position: fixed;
@@ -328,5 +357,91 @@ figcaption {
     z-index: 2;
     pointer-events: none;
     animation: flicker 0.15s infinite;
+}
+
+/* Vaporwave title styles */
+#title {
+  position: relative;
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 16px;
+  animation: title-rotation 2.5s infinite alternate linear;
+  z-index: 10;
+}
+
+#title h1 {
+  font-family: 'Chango', cursive;
+  font-size: 3rem;
+  margin: 0;
+  color: #07B7D4;
+  animation: font-shadow-effect 10s infinite linear;
+}
+
+@keyframes title-rotation {
+  from {transform: rotate(-5deg)}
+  to {transform: rotate(5deg)}
+}
+
+@keyframes font-shadow-effect {
+  0%, 100% {
+    text-shadow: 0px 0px hsl(189, 69%, 55%),
+                1px 1px hsl(204, 69%, 55%),
+                2px 2px hsl(219, 69%, 55%),
+                3px 3px hsl(234, 69%, 55%),
+                4px 4px hsl(249, 69%, 55%),
+                5px 5px hsl(264, 69%, 55%),
+                6px 6px hsl(279, 69%, 55%),
+                7px 7px hsl(294, 69%, 55%),
+                8px 8px hsl(309, 69%, 55%);
   }
   
+  25% {
+    text-shadow: 0px 0px hsl(189, 69%, 55%),
+                1px -1px hsl(204, 69%, 55%),
+                2px -2px hsl(219, 69%, 55%),
+                3px -3px hsl(234, 69%, 55%),
+                4px -4px hsl(249, 69%, 55%),
+                5px -5px hsl(264, 69%, 55%),
+                6px -6px hsl(279, 69%, 55%),
+                7px -7px hsl(294, 69%, 55%),
+                8px -8px hsl(309, 69%, 55%);
+  }
+  
+  50% {
+    text-shadow: 0px 0px hsl(189, 69%, 55%),
+                -1px -1px hsl(204, 69%, 55%),
+                -2px -2px hsl(219, 69%, 55%),
+                -3px -3px hsl(234, 69%, 55%),
+                -4px -4px hsl(249, 69%, 55%),
+                -5px -5px hsl(264, 69%, 55%),
+                -6px -6px hsl(279, 69%, 55%),
+                -7px -7px hsl(294, 69%, 55%),
+                -8px -8px hsl(309, 69%, 55%);
+  }
+  
+  75% {
+    text-shadow: 0px 0px hsl(189, 69%, 55%),
+                -1px 1px hsl(204, 69%, 55%),
+                -2px 2px hsl(219, 69%, 55%),
+                -3px 3px hsl(234, 69%, 55%),
+                -4px 4px hsl(249, 69%, 55%),
+                -5px 5px hsl(264, 69%, 55%),
+                -6px 6px hsl(279, 69%, 55%),
+                -7px 7px hsl(294, 69%, 55%),
+                -8px 8px hsl(309, 69%, 55%);
+  }
+}
+
+.title-container {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Make title responsive */
+@media screen and (max-width: 768px) {
+  #title h1 {
+    font-size: 2rem;
+  }
+}
