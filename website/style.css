@@ -172,8 +172,24 @@ nav a:hover {
 main {
     display: flex;
     gap: 48px;
-    flex-direction: column; /* Changed from column-reverse to column */
+    flex-direction: column;
     max-width: 100%;
+}
+
+/* IMPORTANT: Fix for the section order on mobile */
+/* This code ensures the form is always above the entries on mobile */
+@media screen and (max-width: 991px) {
+    main {
+        flex-direction: column !important;
+    }
+    
+    .form-section {
+        order: 1 !important;
+    }
+    
+    .entries-section {
+        order: 2 !important;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -224,13 +240,6 @@ code {
     padding: 2px 4px;
     background: var(--bg);
 }
-
-/* article p:first-child::first-letter { */
-/*     font-size: 330%; */
-/*     float: left; */
-/*     padding-right: 4px; */
-/*     padding-top: 4px; */
-/* } */
 
 h1 {
     color: #AFB55A;
@@ -439,51 +448,18 @@ figcaption {
   border-radius: 4px;
 }
 
-/* Make title responsive */
+/* Make title responsive - simpler mobile version */
 @media screen and (max-width: 768px) {
-  #title h1 {
-    font-size: 2rem;
-    /* Ensure the font is loaded before animation */
-    font-family: 'Chango', cursive, sans-serif;
-    /* Simplify animation for mobile devices */
-    animation: font-shadow-effect 8s infinite linear;
-  }
-  
-  /* Reduce rotation amount on mobile */
   #title {
-    animation: title-rotation 4s infinite alternate linear;
+    transform: none !important;
+    animation: none !important;
   }
   
-  /* Simplified shadow for mobile */
-  @keyframes font-shadow-effect {
-    0%, 100% {
-      text-shadow: 0px 0px hsl(189, 69%, 55%),
-                  2px 2px hsl(219, 69%, 55%),
-                  4px 4px hsl(249, 69%, 55%),
-                  6px 6px hsl(279, 69%, 55%);
-    }
-    50% {
-      text-shadow: 0px 0px hsl(189, 69%, 55%),
-                  -2px -2px hsl(219, 69%, 55%),
-                  -4px -4px hsl(249, 69%, 55%),
-                  -6px -6px hsl(279, 69%, 55%);
-    }
-  }
-}
-
-/* Fix for section order in mobile view */
-@media screen and (max-width: 991px) {
-  main {
-    flex-direction: column !important; /* Override any other styles */
-    display: flex;
-  }
-  
-  /* Force correct order of sections - specifically target the guestbook form and entries container */
-  main section:nth-child(1) {
-    order: 1; /* Form should be first */
-  }
-  
-  main section:nth-child(2) {
-    order: 2; /* Entries container should be second */
+  #title h1 {
+    font-size: 2.5rem !important;
+    font-family: 'Chango', cursive, sans-serif !important;
+    color: #07B7D4 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 255, 0.5) !important;
+    animation: none !important;
   }
 }
