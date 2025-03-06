@@ -16,12 +16,25 @@
 </head>
 <body>
 <header>
-<!-- Vaporwave style title -->
-<div class="title-container">
-  <div id="title">
-    <h1>Vijtus.com</h1>
+  <!-- Vaporwave style title with fallback -->
+  <div class="title-container">
+    <div id="title">
+      <h1>Vijtus.com</h1>
+    </div>
+    <!-- Fallback for mobile that will only show if the CSS animation fails -->
+    <style>
+      @media screen and (max-width: 768px) {
+        #title h1 {
+          color: #07B7D4 !important;
+          background: linear-gradient(to right, #f953c6, #b91d73, #5271c4) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          text-shadow: 2px 2px 0 rgba(0, 255, 255, 0.5) !important;
+          font-family: 'Chango', cursive, sans-serif !important;
+        }
+      }
+    </style>
   </div>
-</div>
 </header>
 <div id="content">
 <nav class="box-green">
@@ -130,6 +143,32 @@ document.getElementById("guestbook-form").addEventListener("submit", function(ev
       // Clear the input fields
       document.getElementById("name").value = "";
       document.getElementById("message").value = "";
+  }
+});
+</script>
+
+<!-- Fix section ordering on mobile devices -->
+<script>
+// Fix section ordering on mobile devices
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth <= 768) {
+    const main = document.querySelector('main');
+    const sections = Array.from(main.children);
+    
+    // Find form section and entries section
+    const formSection = sections.find(section => section.querySelector('#guestbook-form'));
+    const entriesSection = sections.find(section => section.querySelector('#entries-container'));
+    
+    // If we found both, reorder them
+    if (formSection && entriesSection) {
+      // Remove them from DOM
+      main.removeChild(formSection);
+      main.removeChild(entriesSection);
+      
+      // Add them back in correct order
+      main.appendChild(formSection);
+      main.appendChild(entriesSection);
+    }
   }
 });
 </script>

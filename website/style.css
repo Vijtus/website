@@ -177,7 +177,6 @@ main {
 }
 
 /* IMPORTANT: Fix for the section order on mobile */
-/* This code ensures the form is always above the entries on mobile */
 @media screen and (max-width: 991px) {
     main {
         flex-direction: column !important;
@@ -448,18 +447,66 @@ figcaption {
   border-radius: 4px;
 }
 
-/* Make title responsive - simpler mobile version */
+/* Mobile-specific fixes */
 @media screen and (max-width: 768px) {
+  /* Force the correct vaporwave style on mobile */
   #title {
     transform: none !important;
     animation: none !important;
   }
   
   #title h1 {
-    font-size: 2.5rem !important;
     font-family: 'Chango', cursive, sans-serif !important;
+    font-size: 2.5rem !important;
     color: #07B7D4 !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 255, 0.5) !important;
+    background: linear-gradient(to right, #f953c6, #b91d73, #5271c4) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 3px 3px 0 rgba(0, 255, 255, 0.5), 
+                -3px -3px 0 rgba(255, 0, 255, 0.5) !important;
     animation: none !important;
+    transform: rotate(-3deg) !important;
+    display: inline-block !important;
+  }
+  
+  /* Force the mobile ordering */
+  main {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Target form section to be first */
+  .form-section {
+    order: 1 !important;
+  }
+  
+  /* Target entries section to be last */
+  .entries-section {
+    order: 2 !important;
+  }
+  
+  /* Handle additional visual quirks */
+  .box-green {
+    margin-bottom: 20px !important;
+    width: 100% !important;
+  }
+  
+  /* Make the CRT effect visible on mobile */
+  .crt::before {
+    opacity: 0.5 !important;
+    z-index: 1 !important;
+  }
+  
+  .crt::after {
+    opacity: 0.1 !important;
+    z-index: 1 !important;
+    animation: flicker 0.3s infinite !important;
+  }
+  
+  /* Fix input and textarea sizing */
+  input, textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
   }
 }
