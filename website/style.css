@@ -443,5 +443,47 @@ figcaption {
 @media screen and (max-width: 768px) {
   #title h1 {
     font-size: 2rem;
+    /* Ensure the font is loaded before animation */
+    font-family: 'Chango', cursive, sans-serif;
+    /* Simplify animation for mobile devices */
+    animation: font-shadow-effect 8s infinite linear;
+  }
+  
+  /* Reduce rotation amount on mobile */
+  #title {
+    animation: title-rotation 4s infinite alternate linear;
+  }
+  
+  /* Simplified shadow for mobile */
+  @keyframes font-shadow-effect {
+    0%, 100% {
+      text-shadow: 0px 0px hsl(189, 69%, 55%),
+                  2px 2px hsl(219, 69%, 55%),
+                  4px 4px hsl(249, 69%, 55%),
+                  6px 6px hsl(279, 69%, 55%);
+    }
+    50% {
+      text-shadow: 0px 0px hsl(189, 69%, 55%),
+                  -2px -2px hsl(219, 69%, 55%),
+                  -4px -4px hsl(249, 69%, 55%),
+                  -6px -6px hsl(279, 69%, 55%);
+    }
+  }
+}
+
+/* Fix for section order in mobile view */
+@media screen and (max-width: 991px) {
+  main {
+    flex-direction: column !important; /* Override any other styles */
+    display: flex;
+  }
+  
+  /* Force correct order of sections - specifically target the guestbook form and entries container */
+  main section:nth-child(1) {
+    order: 1; /* Form should be first */
+  }
+  
+  main section:nth-child(2) {
+    order: 2; /* Entries container should be second */
   }
 }
